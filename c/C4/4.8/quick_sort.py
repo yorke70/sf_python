@@ -21,4 +21,4 @@ def qsort_random(array, left, right):
         qsort_random(array, i, right)
     return array
 
-print(qsort_random(array, array[0], array[len(array) - 1]))
+print(qsort_random(array, 0, (len(array) - 1)))
