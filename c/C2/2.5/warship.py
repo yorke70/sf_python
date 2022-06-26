@@ -4,12 +4,12 @@ class BoardException(Exception):
     pass
 
 
-class BoardOutException:
+class BoardOutException(BoardException):
     def __str__(self):
         return "Вы стреляете за доску, так не пойдет"
 
 
-class BoardUsedException:
+class BoardUsedException(BoardException):
     def __str__(self):
         return "По этой клетке уже стреляли"
 
