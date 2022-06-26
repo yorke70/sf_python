@@ -1,8 +1,8 @@
 import telebot
 
-TOKEN = "5368648356:AAEt7oV6a-R4HdtB9YwDWzWTKY-J5-lLhzE"
+TOKEN = "*"
 
-bot = telebot.TeleBot('5368648356:AAEt7oV6a-R4HdtB9YwDWzWTKY-J5-lLhzE')
+bot = telebot.TeleBot('*')
 
 # Обрабатываются все сообщения, содержащие команды '/start' or '/help'.
 # @bot.message_handler(commands=['start', 'help'])
