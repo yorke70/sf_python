@@ -10,7 +10,7 @@ div = soup.find('div', id='question-mini-list')
 a = div.find_all('a', class_='s-link')
 temp_a = []
 final_a = {}
-for i,_ in enumerate(a):
+for _ in range(a):
     if 's-link__muted' not in str(_):
        temp_a.append(_)
 
