@@ -7,7 +7,7 @@ keys = {
     "доллар" : "USD",
     "евро" : "EUR",
     "фунт" : "GBP",
-    "Йена" : "JPY",
+    "йена" : "JPY",
     "юань" : "CNY"
 }
 
@@ -16,10 +16,10 @@ bot = telebot.TeleBot(TOKEN)
 
 @bot.message_handler(commands=['start', 'help'])
 def help(message: telebot.types.Message):
-    text = 'Чтобы начать работу введите комманду в следующем формате: \n' \
+    text = 'Чтобы начать работу введите команду в следующем формате: \n' \
            '<имя валюты> <в какую валюту перевести> <количество переводимой валюты \n' \
            'Например: "доллар рубль 100" \n' \
-           'Чтобы увидеть всех достпных валют введите /values'
+           'Чтобы увидеть список всех доступных валют введите /values'
     bot.reply_to(message, text)
 
 @bot.message_handler(commands=['values'])
