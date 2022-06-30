@@ -1,15 +1,8 @@
 import telebot
-from exch_api import convert
+from exch_api import ExchangeVal
+from config import TOKEN, keys
+from Exception_ex import *
 
-TOKEN = '5483108626:AAEbqQ0AQJYVFmDTQUecnIXID9wgDp5t8V0'
-keys = {
-    "рубль" : "RUB",
-    "доллар" : "USD",
-    "евро" : "EUR",
-    "фунт" : "GBP",
-    "йена" : "JPY",
-    "юань" : "CNY"
-}
 
 bot = telebot.TeleBot(TOKEN)
 
@@ -22,6 +15,7 @@ def help(message: telebot.types.Message):
            'Чтобы увидеть список всех доступных валют введите /values'
     bot.reply_to(message, text)
 
+
 @bot.message_handler(commands=['values'])
 def values(message: telebot.types.Message):
     text = 'Доступные валюты:'
@@ -29,13 +23,16 @@ def values(message: telebot.types.Message):
         text = '\n-> '.join((text, key))
     bot.reply_to(message, text)
 
+
 @bot.message_handler(content_types=['text'])
 def exchange(message: telebot.types.Message):
-    zapros = message.text.lower().split()
-    if zapros[0] in keys and zapros[1] in keys and zapros[2].isdigit():
+    req = message.text.lower().split()
+    if req[0] in keys and req[1] in keys and len(req) == 3 and req[2].isdigit()\
+            and req[0] != req[1]:
         bot.reply_to(message, f'Результат конвертации: '
-                              f'{convert(keys.get(zapros[0]), keys.get(zapros[1]), float(zapros[2]))}')
+                              f'{ExchangeVal.get_price(keys.get(req[0]), keys.get(req[1]), float(req[2]))}')
     else:
         bot.reply_to(message, 'Введены неправильные значения, попробуйте снова!')
+
 
 bot.polling(none_stop=True)
